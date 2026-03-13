@@ -22,7 +22,7 @@ public class Account
 	
 	@Column(nullable=false )
 	private String currency;
-	
+		
 	@Column(nullable=false )
 	private String version;
 	

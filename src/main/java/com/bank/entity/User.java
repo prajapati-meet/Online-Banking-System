@@ -24,7 +24,7 @@ public class User
 	@Column(nullable=false )
 	private String role;
 	
-	@Column(nullable=false )
+	@Column(nullable=false, columnDefinition ="TINYINT(1)" )
 	private Boolean mfa_enabled;
 
 	@Column(nullable=false )

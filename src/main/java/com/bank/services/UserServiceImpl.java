@@ -1,7 +1,6 @@
 package com.bank.services;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserServices
 		// password encoded
 		user.setPassword_hash(passEnc.encode(request.getPassword()));
 		
-		user.setRole("Patient");
+		user.setRole("Customer");
 		user.setMfa_enabled(false);
 		user.setCreated_at(LocalDateTime.now());
 		userRepo.save(user);

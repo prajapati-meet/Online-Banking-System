@@ -18,7 +18,7 @@ public class Beneficiaries {
 	@Column(nullable=false )
 	private String account_number;
 	
-	@Column(nullable=false )
+	@Column(nullable=false, columnDefinition="TINYINT(1)")
 	private Boolean verified;
 	
 	@ManyToOne

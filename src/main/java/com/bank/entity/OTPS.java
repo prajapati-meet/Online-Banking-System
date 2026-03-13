@@ -23,7 +23,7 @@ public class OTPS{
 	@Column(nullable=false )
 	private LocalDateTime expires_at;
 	
-	@Column(nullable=false )
+	@Column(nullable=false, columnDefinition="TINYINT(1)" )
 	private Boolean used;
 
 	@ManyToOne

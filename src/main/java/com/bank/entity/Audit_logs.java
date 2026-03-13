@@ -12,22 +12,22 @@ import jakarta.persistence.ManyToOne;
 public class Audit_logs 
 {
 	@Id
-	String audit_id;
+	private String audit_id;
 	
 	@Column(nullable=false )
-	String action;
+	private String action;
 	
 	@Column(nullable=false )
-	String entity;
+	private String entity;
 	
 	@Column(nullable=false )
-	String entity_id;
+	private String entity_id;
 	
 	@Column(nullable=false )
-	String meta;
+	private String meta;
 	
 	@Column(nullable=false )
-	LocalDateTime created_at;
+	private LocalDateTime created_at;
 		
 	@ManyToOne
 	@JoinColumn(name="user_id")

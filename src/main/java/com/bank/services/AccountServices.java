@@ -1,0 +1,14 @@
+package com.bank.services;
+
+import com.bank.dto.CreateAccountRequest;
+import java.util.*;
+import com.bank.entity.Account;
+
+public interface AccountServices
+{
+	Account createAccount(CreateAccountRequest  request);
+	
+	Account getAccount(String id);
+	
+	
+}
