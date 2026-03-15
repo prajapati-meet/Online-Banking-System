@@ -2,11 +2,15 @@ package com.bank.entity;
 
 import java.math.BigDecimal;
 
+import java.util.*;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Version;
 
 @Entity
 public class Account 
@@ -23,19 +27,26 @@ public class Account
 	@Column(nullable=false )
 	private String currency;
 		
+	@Version
 	@Column(nullable=false )
-	private String version;
+	private long version;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToMany(mappedBy="toAccount")
+	private List<Transactions> receivedTransactions;
+	
+	@OneToMany(mappedBy="fromAccount")
+	private List<Transactions> sentTransactions;
 	
 	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Account(String account_id, String account_number, BigDecimal balance, String currency, String version,
+	public Account(String account_id, String account_number, BigDecimal balance, String currency, long version,
 			User user) {
 		super();
 		this.account_id = account_id;
@@ -78,11 +89,11 @@ public class Account
 		this.currency = currency;
 	}
 
-	public String getVersion() {
+	public long getVersion() {
 		return version;
 	}
 
-	public void setVersion(String version) {
+	public void setVersion(long version) {
 		this.version = version;
 	}
 
@@ -92,6 +103,22 @@ public class Account
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public List<Transactions> getReceivedTransactions() {
+		return receivedTransactions;
+	}
+
+	public void setReceivedTransactions(List<Transactions> receivedTransactions) {
+		this.receivedTransactions = receivedTransactions;
+	}
+
+	public List<Transactions> getSentTransactions() {
+		return sentTransactions;
+	}
+
+	public void setSentTransactions(List<Transactions> sentTransactions) {
+		this.sentTransactions = sentTransactions;
 	}
 
 	@Override

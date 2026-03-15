@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Transaction 
+public class Transactions 
 {
 	@Id
 	private String transaction_id;
@@ -22,7 +22,7 @@ public class Transaction
 	private BigDecimal amount;
 	
 	@Column(nullable=false )
-	private double reference_amount;
+	private BigDecimal reference_amount;
 	
 	@Column(nullable=false )
 	private String status;
@@ -31,16 +31,20 @@ public class Transaction
 	private LocalDateTime created_at;
 	
 	@ManyToOne
-	@JoinColumn(name="account_id")
-	private Account account;
+	@JoinColumn(name="from_account")
+	private Account fromAccount;
 	
-	public Transaction() {
+	@ManyToOne
+	@JoinColumn(name="to_account")
+	private Account toAccount;
+	
+	public Transactions() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transaction(String transaction_id, String type, BigDecimal amount, double reference_amount, String status,
-			LocalDateTime created_at, Account account) {
+	public Transactions(String transaction_id, String type, BigDecimal amount, BigDecimal reference_amount, String status,
+			LocalDateTime created_at, Account fromAccount, Account toAccount) {
 		super();
 		this.transaction_id = transaction_id;
 		this.type = type;
@@ -48,7 +52,9 @@ public class Transaction
 		this.reference_amount = reference_amount;
 		this.status = status;
 		this.created_at = created_at;
-		this.account = account;
+		this.fromAccount = fromAccount;
+		this.toAccount = toAccount;
+
 	}
 
 	public String getTransaction_id() {
@@ -75,11 +81,11 @@ public class Transaction
 		this.amount = amount;
 	}
 
-	public double getReference_amount() {
+	public BigDecimal getReference_amount() {
 		return reference_amount;
 	}
 
-	public void setReference_amount(double reference_amount) {
+	public void setReference_amount(BigDecimal reference_amount) {
 		this.reference_amount = reference_amount;
 	}
 
@@ -99,12 +105,20 @@ public class Transaction
 		this.created_at = created_at;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Account getToAccount() {
+		return toAccount;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setToAccount(Account toAccount) {
+		this.toAccount = toAccount;
+	}
+	
+	public Account getFromAccount() {
+		return fromAccount;
+	}
+
+	public void setFromAccount(Account fromAccount) {
+		this.fromAccount = fromAccount;
 	}
 
 	@Override

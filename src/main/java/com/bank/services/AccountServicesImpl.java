@@ -1,7 +1,6 @@
 package com.bank.services;
 
-import java.math.BigDecimal;
-import java.util.List;
+
 
 import org.springframework.stereotype.Service;
 
@@ -35,9 +34,8 @@ public class AccountServicesImpl implements AccountServices
 		
 		acc.setAccount_id(id);
 		acc.setAccount_number(setAccountNumber(id));
-		acc.setBalance(BigDecimal.ZERO);
+		acc.setBalance(request.getBalance());
 		acc.setCurrency("INR");
-		acc.setVersion("1");
 		acc.setUser(user);
 		
 		return accRepo.save(acc);
