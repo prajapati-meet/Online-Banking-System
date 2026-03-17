@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig 
@@ -21,8 +22,10 @@ public class SecurityConfig
           .csrf(csrf -> csrf.disable())
           .authorizeHttpRequests(auth -> auth
                   .requestMatchers("/auth/**").permitAll()
-                  .anyRequest().permitAll()   // temporarily allow all for testing
-          );
+                  .anyRequest().authenticated()  // temporarily allow all for testing
+          )
+          .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class);
+		  
 
 	        return http.build();
 	    }

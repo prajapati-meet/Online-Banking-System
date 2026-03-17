@@ -7,7 +7,7 @@ public class TransferRequest
 	private String toAccount;
 	private String fromAccount;
 	private BigDecimal amount;
-	
+
 	public TransferRequest() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -35,6 +35,11 @@ public class TransferRequest
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public String getOtp() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -4,5 +4,5 @@ import com.bank.dto.TransferRequest;
 
 public interface TransferServices 
 {
-	public String transfer(TransferRequest request);
+	public String transfer(TransferRequest requestg);
 }
